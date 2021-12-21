@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-7 fst-italic">Bienvenido al sitio de posts</h1>
+        </div>
+    </div>
+
+
+    {% if posts %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2 text-primary">Post</strong>
+                            <h3 class="mb-0">{{post.titulo}}</h3>
+                            <div class="mb-1 text-muted">{{post.fecha_creacion}}</div>
+                            <p class="card-text mb-auto">{{post.contenido}}</p>
+                            <a href="#" class="stretched-link">Continue reading</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            No hay posts
+        </div>
+    {% endif %} 
+{% endblock %}
+
+
+<!-- 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-3">col</div>
+            <div class="col-md-4 col-sm-3">col</div>
+            <div class="col-md-5 col-sm-3">col</div>
+            <div class="col-md-1 col-sm-3">col</div>
+        </div>
+    </div>
+
+{% if noticias %}
+{% for noticia in noticias %}
+
+{% endfor %}
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    No hay noticias 
+</div>
+
+{% endif %} 
+-->
