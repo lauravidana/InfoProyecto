@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from .models import Post
 
 class ListarPosts(ListView):
@@ -10,3 +11,7 @@ class ListarPosts(ListView):
 	#def get_queryset(self):
 	#	noticias = Noticia.objects.all().order_by('-fecha_creacion')
 	#	return noticias
+
+class DetallePost(DetailView):
+	model = Post
+	template_name="posts/post_detail.html"
