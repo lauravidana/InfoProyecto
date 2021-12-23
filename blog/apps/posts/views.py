@@ -3,8 +3,11 @@ from django.http import HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Post
+from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-class ListarPosts(ListView):
+class ListarPosts(LoginRequiredMixin, ListView):
 	model = Post
 	template_name = "posts/postsList.html"
 	context_object_name = "posts"
@@ -12,6 +15,17 @@ class ListarPosts(ListView):
 	#	noticias = Noticia.objects.all().order_by('-fecha_creacion')
 	#	return noticias
 
-class DetallePost(DetailView):
+class DetallePost(LoginRequiredMixin, DetailView):
 	model = Post
 	template_name="posts/post_detail.html"
+
+class CrearPost(CreateView):
+	model = Post
+	success_url='/posts'
+	fields= ['titulo','contenido']
+
+class UpdatePost(UpdateView):
+	model = Post
+	success_url='/posts'
+	form_class = PostForm
+	template_name = 'posts/post_update_form.html'
