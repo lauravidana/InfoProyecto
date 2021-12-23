@@ -9,5 +9,13 @@
             <a class="btn btn-lg btn-primary" href="{% url 'update' object.id %}" role="button">Editar</a>
             <a class="btn btn-lg btn-primary" href="{% url 'crear' object.id %}" role="button">Crear nuevo post</a>
         </div>
+        <h3>Comentarios:</h3>
+        <ul>
+            {% for c in comentarios %}
+                <div class="col-md-6">
+                    <p>{{c.contenido}}</p>
+                </div>
+            {% endfor %} 
+        </ul>        
     </main>
 {% endblock %}
