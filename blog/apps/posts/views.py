@@ -23,10 +23,17 @@ class DetallePost(LoginRequiredMixin, DetailView):
 		data['comentarios'] = Comentario.objects.all()
 		return data 
 
+def index(request):
+    return render(
+		request,
+        'index.html',
+	)
+
 class CrearPost(CreateView):
 	model = Post
 	success_url='/posts'
-	fields= ['titulo','contenido']
+	form_class = PostForm
+	template_name = 'posts/post_form.html'
 
 class UpdatePost(UpdateView):
 	model = Post
